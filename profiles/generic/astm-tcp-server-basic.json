@@ -1,0 +1,38 @@
+{
+  "lifecycle": {
+    "enabled": true,
+    "autoConnect": true,
+    "mode": "edge_agent_first"
+  },
+  "capture": {
+    "type": "tcp",
+    "tcp": {
+      "role": "server",
+      "host": "127.0.0.1"
+    }
+  },
+  "protocol": {
+    "type": "astm",
+    "encoding": "ascii",
+    "readTimeoutMs": 30000,
+    "astm": {
+      "direction": "receive_with_ack",
+      "ackEnq": true,
+      "ackValidFrame": true,
+      "nakBadChecksum": true,
+      "checksumMode": "strict",
+      "frameNumberMode": "warn",
+      "duplicateFramePolicy": "discard_duplicate",
+      "endMessageOnEot": true,
+      "ackTimeoutMs": 3000,
+      "maxFrameRetries": 3,
+      "interFrameTimeoutMs": 5000,
+      "maxTransactionBytes": 1048576,
+      "maxFrameCount": 256
+    }
+  },
+  "observability": {
+    "probeEnabled": false,
+    "logLevel": "info"
+  }
+}

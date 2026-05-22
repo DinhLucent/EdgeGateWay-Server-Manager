@@ -1,0 +1,53 @@
+{
+  "lifecycle": {
+    "enabled": true,
+    "autoConnect": true,
+    "mode": "edge_agent_first"
+  },
+  "capture": {
+    "type": "serial",
+    "serial": {
+      "baudRate": 9600,
+      "dataBits": 8,
+      "parity": "none",
+      "stopBits": "one",
+      "flowControl": "none",
+      "readTimeoutMs": 200,
+      "writeTimeoutMs": 2000,
+      "readCoalesceMs": 15,
+      "maxBufferBytes": 1048576
+    }
+  },
+  "protocol": {
+    "type": "astm",
+    "encoding": "ascii",
+    "readTimeoutMs": 30000,
+    "astm": {
+      "direction": "receive_with_ack",
+      "ackEnq": true,
+      "ackValidFrame": true,
+      "nakBadChecksum": true,
+      "checksumMode": "strict",
+      "frameNumberMode": "warn",
+      "duplicateFramePolicy": "discard_duplicate",
+      "enqCollisionPolicy": "analyzer_wins",
+      "endMessageOnEot": true,
+      "ackTimeoutMs": 3000,
+      "maxFrameRetries": 3,
+      "interFrameTimeoutMs": 5000,
+      "maxTransactionBytes": 1048576,
+      "maxFrameCount": 256,
+      "maxOutboundFramePayloadBytes": 240,
+      "orderReply": {
+        "enabled": false,
+        "autoReplyMatchedQuery": false,
+        "unknownQueryPolicy": "log_only",
+        "host": "EdgeGateway"
+      }
+    }
+  },
+  "observability": {
+    "probeEnabled": false,
+    "logLevel": "info"
+  }
+}

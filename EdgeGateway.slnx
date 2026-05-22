@@ -1,0 +1,7 @@
+<Solution>
+    <Project Path="EdgeGateway.Core/EdgeGateway.Core.csproj" />
+    <Project Path="EdgeGateway.Manager/EdgeGateway.Manager.csproj" />
+    <Project Path="EdgeGateway.Service/EdgeGateway.Service.csproj" />
+    <Project Path="EdgeGateway.Tests/EdgeGateway.Tests.csproj" />
+    <Project Path="EdgeGateway.Tray/EdgeGateway.Tray.csproj" />
+  </Solution>

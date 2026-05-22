@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "profileLibrary": "profiles",
+  "devices": [
+    {
+      "identity": {
+        "deviceId": "ca270-tcp-dev",
+        "name": "CA270 TCP Dev"
+      },
+      "lifecycle": {
+        "enabled": true,
+        "autoConnect": true,
+        "mode": "edge_agent_first"
+      },
+      "capture": {
+        "type": "tcp",
+        "tcp": {
+          "role": "server",
+          "host": "127.0.0.1",
+          "port": 9100
+        }
+      },
+      "protocol": {
+        "type": "astm",
+        "encoding": "ascii",
+        "readTimeoutMs": 30000,
+        "astm": {
+          "direction": "bidirectional",
+          "ackEnq": true,
+          "ackValidFrame": true,
+          "nakBadChecksum": true,
+          "checksumMode": "strict",
+          "frameNumberMode": "warn",
+          "duplicateFramePolicy": "discard_duplicate",
+          "enqCollisionPolicy": "analyzer_wins",
+          "endMessageOnEot": true,
+          "ackTimeoutMs": 3000,
+          "maxFrameRetries": 3,
+          "interFrameTimeoutMs": 5000,
+          "maxTransactionBytes": 1048576,
+          "maxFrameCount": 256,
+          "maxOutboundFramePayloadBytes": 240,
+          "bidirectional": true,
+          "checksum": true,
+          "startOfFrame": "\u003CSTX\u003E",
+          "endOfFrame": "\u003CETX/ETB\u003E",
+          "orderReply": {
+            "enabled": false,
+            "autoReplyMatchedQuery": false,
+            "unknownQueryPolicy": "log_only",
+            "host": "EdgeGateway",
+            "template": {
+              "testCodePrefix": "^^^",
+              "testSeparator": "\\",
+              "emptyTestList": "^^^00",
+              "recordSeparator": "\r",
+              "records": [
+                "H|\\^\u0026|||{HOST}|||||||||{TIMESTAMP}",
+                "P|1|{SAMPLE_ID}",
+                "O|1|{SAMPLE_ID}||{TEST_LIST}",
+                "L|1|N"
+              ]
+            }
+          }
+        },
+        "parser": {
+          "type": "none",
+          "enabled": true,
+          "outputMode": "metadata_only",
+          "regexLineRules": [],
+          "delimiterTable": {
+            "delimiter": "|",
+            "hasHeader": true,
+            "columns": {}
+          },
+          "fixedColumnReport": {
+            "columns": {}
+          }
+        }
+      },
+      "output": {
+        "type": "http",
+        "url": "http://localhost:18081/mock-mirth"
+      },
+      "observability": {
+        "probeEnabled": false,
+        "logLevel": "info"
+      }
+    },
+    {
+      "identity": {
+        "deviceId": "ca270-serial-dev",
+        "name": "CA270 Serial Dev"
+      },
+      "lifecycle": {
+        "enabled": false,
+        "autoConnect": false,
+        "mode": "edge_agent_first"
+      },
+      "capture": {
+        "type": "serial",
+        "serial": {
+          "comPort": "COM5",
+          "baudRate": 9600,
+          "dataBits": 8,
+          "parity": "none",
+          "stopBits": "one",
+          "flowControl": "none",
+          "readTimeoutMs": 200,
+          "writeTimeoutMs": 2000,
+          "readCoalesceMs": 15,
+          "maxBufferBytes": 1048576
+        }
+      },
+      "protocol": {
+        "type": "astm",
+        "encoding": "ascii",
+        "readTimeoutMs": 200,
+        "astm": {
+          "direction": "bidirectional",
+          "ackEnq": true,
+          "ackValidFrame": true,
+          "nakBadChecksum": true,
+          "checksumMode": "strict",
+          "frameNumberMode": "warn",
+          "duplicateFramePolicy": "discard_duplicate",
+          "enqCollisionPolicy": "analyzer_wins",
+          "endMessageOnEot": true,
+          "ackTimeoutMs": 3000,
+          "maxFrameRetries": 3,
+          "interFrameTimeoutMs": 5000,
+          "maxTransactionBytes": 1048576,
+          "maxFrameCount": 256,
+          "maxOutboundFramePayloadBytes": 240,
+          "bidirectional": true,
+          "checksum": true,
+          "startOfFrame": "\u003CSTX\u003E",
+          "endOfFrame": "\u003CETX/ETB\u003E",
+          "orderReply": {
+            "enabled": false,
+            "autoReplyMatchedQuery": false,
+            "unknownQueryPolicy": "log_only",
+            "host": "EdgeGateway",
+            "template": {
+              "testCodePrefix": "^^^",
+              "testSeparator": "\\",
+              "emptyTestList": "^^^00",
+              "recordSeparator": "\r",
+              "records": [
+                "H|\\^\u0026|||{HOST}|||||||||{TIMESTAMP}",
+                "P|1|{SAMPLE_ID}",
+                "O|1|{SAMPLE_ID}||{TEST_LIST}",
+                "L|1|N"
+              ]
+            }
+          }
+        },
+        "parser": {
+          "type": "none",
+          "enabled": true,
+          "outputMode": "metadata_only",
+          "regexLineRules": [],
+          "delimiterTable": {
+            "delimiter": "|",
+            "hasHeader": true,
+            "columns": {}
+          },
+          "fixedColumnReport": {
+            "columns": {}
+          }
+        }
+      },
+      "output": {
+        "type": "http",
+        "url": "http://localhost:18081/mock-mirth"
+      },
+      "observability": {
+        "probeEnabled": false,
+        "logLevel": "info"
+      }
+    },
+    {
+      "identity": {
+        "deviceId": "astm-serial-basic-001",
+        "name": "Generic Astm Serial Basic"
+      },
+      "lifecycle": {
+        "enabled": false,
+        "autoConnect": false,
+        "mode": "edge_agent_first"
+      },
+      "capture": {
+        "type": "serial",
+        "serial": {
+          "comPort": "COM1",
+          "baudRate": 9600,
+          "dataBits": 8,
+          "parity": "none",
+          "stopBits": "one",
+          "flowControl": "none",
+          "readTimeoutMs": 200,
+          "writeTimeoutMs": 2000,
+          "readCoalesceMs": 15,
+          "maxBufferBytes": 1048576
+        }
+      },
+      "protocol": {
+        "type": "astm",
+        "encoding": "ascii",
+        "readTimeoutMs": 200,
+        "astm": {
+          "direction": "receive_with_ack",
+          "ackEnq": true,
+          "ackValidFrame": true,
+          "nakBadChecksum": true,
+          "checksumMode": "strict",
+          "frameNumberMode": "warn",
+          "duplicateFramePolicy": "discard_duplicate",
+          "enqCollisionPolicy": "analyzer_wins",
+          "endMessageOnEot": true,
+          "ackTimeoutMs": 3000,
+          "maxFrameRetries": 3,
+          "interFrameTimeoutMs": 5000,
+          "maxTransactionBytes": 1048576,
+          "maxFrameCount": 256,
+          "maxOutboundFramePayloadBytes": 240,
+          "bidirectional": false,
+          "checksum": true,
+          "startOfFrame": "\u003CSTX\u003E",
+          "endOfFrame": "\u003CETX/ETB\u003E",
+          "orderReply": {
+            "enabled": false,
+            "autoReplyMatchedQuery": false,
+            "unknownQueryPolicy": "log_only",
+            "host": "EdgeGateway",
+            "template": {
+              "testCodePrefix": "^^^",
+              "testSeparator": "\\",
+              "emptyTestList": "^^^00",
+              "recordSeparator": "\r",
+              "records": [
+                "H|\\^\u0026|||{HOST}|||||||||{TIMESTAMP}",
+                "P|1|{SAMPLE_ID}",
+                "O|1|{SAMPLE_ID}||{TEST_LIST}",
+                "L|1|N"
+              ]
+            }
+          }
+        },
+        "parser": {
+          "type": "none",
+          "enabled": true,
+          "outputMode": "metadata_only",
+          "regexLineRules": [],
+          "delimiterTable": {
+            "delimiter": "|",
+            "hasHeader": true,
+            "columns": {}
+          },
+          "fixedColumnReport": {
+            "columns": {}
+          }
+        }
+      },
+      "output": {
+        "type": "http",
+        "url": "http://localhost:18081/mock-mirth"
+      },
+      "observability": {
+        "probeEnabled": false,
+        "logLevel": "info"
+      }
+    }
+  ]
+}

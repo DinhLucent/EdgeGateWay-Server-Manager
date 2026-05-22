@@ -1,0 +1,27 @@
+{
+  "lifecycle": {
+    "enabled": true,
+    "autoConnect": true,
+    "mode": "edge_agent_first"
+  },
+  "capture": {
+    "type": "tcp",
+    "tcp": {
+      "role": "server",
+      "host": "127.0.0.1"
+    }
+  },
+  "protocol": {
+    "type": "hl7_mllp",
+    "encoding": "ascii",
+    "readTimeoutMs": 30000,
+    "mllp": {
+      "startOfFrame": "<VT>",
+      "endOfFrame": "<FS><CR>"
+    }
+  },
+  "observability": {
+    "probeEnabled": false,
+    "logLevel": "info"
+  }
+}

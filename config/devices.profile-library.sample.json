@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "profileLibrary": "../profiles",
+  "devices": [
+    {
+      "profile": "generic/astm-serial-basic",
+      "identity": {
+        "deviceId": "ca270-serial-dev",
+        "name": "CA270 Serial Dev"
+      },
+      "lifecycle": {
+        "enabled": false,
+        "autoConnect": false
+      },
+      "capture": {
+        "serial": {
+          "comPort": "COM5",
+          "baudRate": 19200
+        }
+      },
+      "protocol": {
+        "astm": {
+          "orderReply": {
+            "enabled": false
+          }
+        }
+      },
+      "output": {
+        "type": "http",
+        "url": "http://localhost:18081/mock-mirth"
+      }
+    },
+    {
+      "profile": "generic/raw-delimited-serial-basic",
+      "identity": {
+        "deviceId": "printer-text-dev",
+        "name": "Printer Text Dev"
+      },
+      "lifecycle": {
+        "enabled": false,
+        "autoConnect": false
+      },
+      "capture": {
+        "serial": {
+          "comPort": "COM6"
+        }
+      },
+      "protocol": {
+        "raw": {
+          "delimiter": "CRLF"
+        }
+      },
+      "output": {
+        "type": "file_folder",
+        "url": "file:///D:/MyProject/LabInfoSys/output/edge-gateway/packet-output/"
+      }
+    }
+  ]
+}
